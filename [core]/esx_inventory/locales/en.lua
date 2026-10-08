@@ -35,7 +35,7 @@ return {
     ["threw_weapon_already"] = "You already have this weapon",
     ["threw_cannot_pickup"] = "Inventory is full, Cannot Pickup!",
     ["threw_pickup_prompt"] = "Press E to Pickup",
-    ["keymap_showinventory"] = "Show Inventory",
+    ["keymap_showinventory"] = "Toggle Inventory",
     ["locale_currency"] = "$%s",
     ["ammo_rounds"] = "Rounds"
 }

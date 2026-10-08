@@ -35,7 +35,7 @@ return {
     ["threw_weapon_already"] = "Je hebt dit wapen al !",
     ["threw_cannot_pickup"] = "Inventaris is vol, je kan dit niet oppakken!",
     ["threw_pickup_prompt"] = "Druk op E om op te pakken",
-    ["keymap_showinventory"] = "Laat inventaris zien",
-    ["locale_currency"] = "$%s",
+    ["keymap_showinventory"] = "Inventaris weergeven/verbergen",
+    ["locale_currency"] = "€%s",
     ["ammo_rounds"] = "Rounds"
 }

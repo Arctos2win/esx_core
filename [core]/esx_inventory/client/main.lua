@@ -186,6 +186,12 @@ end
 -- Main Inventory UI --
 ----------------------
 
+local function isInventoryOpened()
+    return ESX.UI.Menu.IsOpen("default", ESX.currentResourceName, "esx_inventory_main") 
+    or ESX.UI.Menu.IsOpen("default", ESX.currentResourceName, "esx_inventory_actions") or
+    ESX.UI.Menu.IsOpen("dialog", ESX.currentResourceName, "esx_inventory_quantity")
+end
+
 local function showInventory()
     local elements, totalWeight = buildInventoryElements()
     ESX.UI.Menu.Open("default", ESX.currentResourceName, "esx_inventory_main", {
@@ -214,20 +220,20 @@ end
 exports("ShowInventory", showInventory)
 
 ESX.RegisterInput("showinv", TranslateCap("keymap_showinventory"), "keyboard", "F2", function()
-    if not ESX.PlayerData.dead then
-        showInventory()
+    if isInventoryOpened() then
+        ESX.UI.Menu.CloseAll()
+        return
     end
+    if ESX.PlayerData.dead then return end
+    showInventory()
 end)
 
 local function refreshInventory()
-    if not ESX.UI.Menu.IsOpen("default", ESX.currentResourceName, "esx_inventory_main") and
-        not ESX.UI.Menu.IsOpen("default", ESX.currentResourceName, "esx_inventory_actions") and
-        not ESX.UI.Menu.IsOpen("dialog", ESX.currentResourceName, "esx_inventory_quantity") then
-        return
-    end
+    if not isInventoryOpened() then return end
     Citizen.Wait(0)
     ESX.UI.Menu.CloseAll()
     showInventory()
 end
+
 RegisterNetEvent("esx:addInventoryItem", refreshInventory)
 RegisterNetEvent("esx:removeInventoryItem", refreshInventory)
